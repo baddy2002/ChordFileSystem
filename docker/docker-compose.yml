@@ -1,0 +1,140 @@
+
+# parametri comuni a tutti i nodi e immagine singola
+x-node-base: &node-base
+  image: chord-node
+  environment:
+    - NODE_PORT=1099
+
+services:
+
+  node0:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=0
+      - NODE_HOSTNAME=node0
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node0:/data:cached   # cached migliora prestazioni se vengono modificati o aggiunti file
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+  node5:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=5
+      - NODE_HOSTNAME=node5
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node5:/data:cached
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+  node10:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=10
+      - NODE_HOSTNAME=node10
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node10:/data:cached
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+  node15:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=15
+      - NODE_HOSTNAME=node15
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node15:/data:cached
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+  node20:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=20
+      - NODE_HOSTNAME=node20
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node20:/data:cached
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+  node25:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=25
+      - NODE_HOSTNAME=node25
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node25:/data:cached
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+  node30:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=30
+      - NODE_HOSTNAME=node30
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node30:/data:cached
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+  node35:
+    <<: *node-base
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    environment:
+      - NODE_ID=35
+      - NODE_HOSTNAME=node35
+      - ALL_NODES=node0,node5,node10,node15,node20,node25,node30,node35
+      - NODE_PORT=1099
+    networks:
+      - chord_system
+    volumes:
+      - ../src/main/resources/node-files/node35:/data:cached
+      - ../src/main/resources/commands/start.sh:/app/start.sh:cached
+
+networks:
+  chord_system:
+
